@@ -1,0 +1,20 @@
+.container {
+  width: 50%;
+  height: 55%;
+  border-radius: 20px;
+  background-color: #f4e1ba;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  color: #e55c14;
+  font-weight: bold;
+  margin-bottom: 3rem;
+}
+
+.content {
+  font-weight: normal;
+  color: black;
+  line-height: 2rem;
+}

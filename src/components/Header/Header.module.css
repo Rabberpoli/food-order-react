@@ -1,0 +1,41 @@
+.header-container {
+  height: 6rem;
+  background: #e55c14;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+p {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.title-header {
+  color: #f4e1ba;
+  font-size: 2.5rem;
+}
+
+.shopping-svg {
+  width: 2.5rem;
+  color: #e55c14;
+}
+
+.img-text-container {
+  display: flex;
+}
+
+.counter-container {
+  border-radius: 69%;
+  width: 3rem;
+  background-color: #e55c14;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.counter-text {
+  color: #f4e1ba;
+}

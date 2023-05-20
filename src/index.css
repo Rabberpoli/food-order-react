@@ -1,5 +1,61 @@
 * {
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
-  margin: 0;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.main-container {
+  background-color: #212329;
+}
+
+.section-container {
+  height: 40rem;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-self-center {
+  align-self: center;
+}
+
+.mb-05 {
+  margin-bottom: 0.3rem;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.pb-2 {
+  padding-bottom: 2rem;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mr-05 {
+  margin-right: 0.5rem;
 }
