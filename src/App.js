@@ -18,7 +18,7 @@ All our meals are cooked with high-quality ingredients, just-in-time and of cour
   return (
     <div className="main-container">
       <AuthContext.Provider value={{ foodItems: itemToAdd }}>
-        <Header> ReactMeals </Header>
+        <Header addCart={onAddToCartItem}> ReactMeals </Header>
       </AuthContext.Provider>
       <section className="display-flex section-container align-items-center justify-content-center">
         <PresentationCard title={title} content={content}></PresentationCard>

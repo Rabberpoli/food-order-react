@@ -24,12 +24,28 @@ body {
   display: flex;
 }
 
+.flex-flow-cl {
+  flex-flow: column;
+}
+
+.flex-50 {
+  flex: 0 0 50%;
+}
+
 .align-items-center {
   align-items: center;
 }
 
 .justify-content-center {
   justify-content: center;
+}
+
+.justify-content-space-between {
+  justify-content: space-between;
+}
+
+.justify-content-end {
+  justify-content: flex-end;
 }
 
 .align-self-center {
@@ -56,6 +72,18 @@ body {
   margin-top: 1rem;
 }
 
+.mt-3 {
+  margin-top: 3rem;
+}
+
 .mr-05 {
   margin-right: 0.5rem;
+}
+
+.mr-7 {
+  margin-right: 7rem;
+}
+
+.ml-3 {
+  margin-left: 3rem;
 }

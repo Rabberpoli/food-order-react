@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import FoodItem from "../FoodItem/FoodItem";
+import FoodItem from "./FoodItem/FoodItem";
 import classes from "./FoodList.module.css";
 
 function FoodList(props) {

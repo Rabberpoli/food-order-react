@@ -1,0 +1,30 @@
+h2 {
+    font-size: 2rem;
+}
+
+.modal-amount {
+    color: #e55c14;
+    font-size: 1.3rem;
+}
+
+.quantity-container {
+    align-self: center;
+    width: 40px;
+    text-align: center;
+    border: solid 1px #e55c14;
+    border-radius: 8px;
+    height: 17px;
+    font-weight: bold;
+    padding-top: 0.18rem;
+}
+
+.add-remove-item-btn {
+    width: 50px;
+    height: 30px;
+    border: solid 1px #e55c14;
+    border-radius: 7px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bolder;
+    color: #e55c14;
+}

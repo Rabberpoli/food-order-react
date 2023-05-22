@@ -1,5 +1,78 @@
+import classes from './Cart.module.css';
+import React, { useEffect, useState } from 'react';
+import CartItem from './CartItem/CartItem';
+
 function Cart(props) {
-  return <div></div>;
+
+  const [showResult, setShowResult] = useState(true);
+  const [foodItemsAdded, setFoodItemsAdded] = useState(props.foodItemsAdded);
+
+  useEffect(()=>{
+    if(foodItemsAdded.length > 0) {
+      getTotalAmount();
+      props.cartUpdated(foodItemsAdded)
+      return;
+    }
+
+    props.cartUpdated(foodItemsAdded)
+    closeDialog();
+  }, [foodItemsAdded])
+
+  const getTotalAmount = () => {
+    return foodItemsAdded.reduce( (a,b) => {
+      return a + b.amount*b.quantity
+    }, 0).toFixed(2)
+  }
+
+  const closeDialog = () => {
+    setShowResult(false);
+    props.closeDialog();
+  }
+
+  const order = () => {
+    window.alert('Food ordered!')
+  }
+
+  const onDeleteItem = (id) => {
+    setFoodItemsAdded(prevState => [...prevState.filter(p => p.id !== id)])
+  }
+
+  const onUpdateSummary = (id, quantity) => {
+    const itemIndex = foodItemsAdded.findIndex( item => item.id === id );
+    if (itemIndex >= 0) {
+      const arrayCopy = [...foodItemsAdded];
+      arrayCopy[itemIndex].quantity = quantity; 
+      setFoodItemsAdded(arrayCopy);
+      return;
+    }
+  }
+
+  return (
+      showResult ? <div id='modal' className={classes['cart-modal']}>
+      <div className={classes['cart-modal-content']}>
+        {
+          foodItemsAdded.map(item => {
+            return (
+              <CartItem key={item.id} id={item.id} name={item.name} amount={item.amount} quantity={item.quantity} deleteItem={onDeleteItem} updateSummary={onUpdateSummary}></CartItem>
+            )
+          })
+        }
+        <div className={`${classes['item-divider']} mb-1 mt-1`}>
+
+        </div>
+        <div className='display-flex justify-content-space-between'>
+          <p className={classes.total}>Total amount</p>
+          <p className={classes.total}>
+            {getTotalAmount()}
+          </p>
+        </div>
+        <div className='display-flex justify-content-end mt-3'>
+          <button type='button' className={`${classes['cart-btn-close']} ml-3`} onClick={closeDialog}> Close </button>
+          <button className={`${classes['cart-btn-order']} ml-3`} onClick={order}> Order </button>
+        </div>
+      </div>
+    </div> : null
+  );
 }
 
 export default Cart;

@@ -3,11 +3,15 @@ import classes from "./Header.module.css";
 import shopping_bag from "../../assets/icons/shopping_bag.svg";
 import AuthContext from "../../store/auth-context";
 import { useContext, useEffect, useState } from "react";
+import Cart from "../Cart/Cart";
+import React from "react";
+import { createPortal } from "react-dom";
 
 function Header(props) {
   const ctx = useContext(AuthContext);
   const [foodListCart, setFoodListCart] = useState([]);
   const [countItems, setCountItems] = useState(0);
+  const [isCartClicked, setIsCartClicked] = useState(false);
 
   useEffect(() => {
     const indexFoodItem = foodListCart.findIndex(
@@ -16,8 +20,9 @@ function Header(props) {
     if (indexFoodItem >= 0) {
       foodListCart[indexFoodItem].quantity =
         foodListCart[indexFoodItem].quantity + ctx.foodItems.quantity;
+      setFoodListCart(foodListCart);
     } else {
-      ctx.foodItems && ctx.foodItems.id && foodListCart.push(ctx.foodItems);
+      ctx.foodItems && ctx.foodItems.id && foodListCart.push(ctx.foodItems) && setFoodListCart(foodListCart);
     }
 
     const totalCount =
@@ -30,14 +35,36 @@ function Header(props) {
         }, 0)) ||
       0;
 
-    totalCount > 50 ? setCountItems("50+") : setCountItems(totalCount);
+    totalCount > 99 ? setCountItems("99+") : setCountItems(totalCount);
+
+
   }, [ctx.foodItems]);
 
+  const showCartModal = (event) => {
+    setIsCartClicked(true);
+  }
+
+  const onCloseDialog = () => {
+    setIsCartClicked(false);
+  }
+
+  const onCartUpdated = (items) => {
+    props.addCart((foodListCart &&
+      foodListCart.length > 0 &&
+      foodListCart.reduce((a, b) => {
+        console.log(a);
+        console.log(b);
+        return a + b.quantity;
+      }, 0)) ||
+    0);
+  }
+
   return (
-    <div className={classes["header-container"]}>
+    <React.Fragment>
+      <div className={classes["header-container"]}>
       <p className={classes["title-header"]}>{props.children}</p>
       <Button type={"button"}>
-        <div className={classes["img-text-container"]}>
+        <div className={classes["img-text-container"]} onClick={showCartModal}>
           <img
             className={classes["shopping-svg"]}
             src={shopping_bag}
@@ -50,6 +77,10 @@ function Header(props) {
         </div>
       </Button>
     </div>
+    {
+      isCartClicked ? createPortal(<Cart closeDialog={onCloseDialog} foodItemsAdded={foodListCart} cartUpdated={onCartUpdated}></Cart>, document.getElementById('root')) : null
+    }
+    </React.Fragment>
   );
 }
 
