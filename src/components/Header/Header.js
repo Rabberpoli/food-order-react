@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import Cart from "../Cart/Cart";
 import React from "react";
 import { createPortal } from "react-dom";
+import { motion } from "framer-motion"
 
 function Header(props) {
   const ctx = useContext(AuthContext);
@@ -41,6 +42,9 @@ function Header(props) {
   }, [ctx.foodItems]);
 
   const showCartModal = (event) => {
+    if (!foodListCart || !foodListCart.length) {
+      return;
+    }
     setIsCartClicked(true);
   }
 
@@ -61,7 +65,7 @@ function Header(props) {
 
   return (
     <React.Fragment>
-      <div className={classes["header-container"]}>
+      <motion.div initial={{y:-100, opacity:0}} animate={{y:0, opacity:1}} transition={{duration:1.5, type:'spring', stiffness:120}} className={classes["header-container"]}>
       <p className={classes["title-header"]}>{props.children}</p>
       <Button type={"button"}>
         <div className={classes["img-text-container"]} onClick={showCartModal}>
@@ -76,9 +80,9 @@ function Header(props) {
           <p className={classes["counter-text"]}>{countItems}</p>
         </div>
       </Button>
-    </div>
+    </motion.div>
     {
-      isCartClicked ? createPortal(<Cart closeDialog={onCloseDialog} foodItemsAdded={foodListCart} cartUpdated={onCartUpdated}></Cart>, document.getElementById('root')) : null
+      isCartClicked && createPortal(<Cart closeDialog={onCloseDialog} foodItemsAdded={foodListCart} cartUpdated={onCartUpdated}></Cart>, document.getElementById('root'))
     }
     </React.Fragment>
   );

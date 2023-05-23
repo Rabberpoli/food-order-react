@@ -7,14 +7,16 @@
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 2.7rem;
   color: #e55c14;
   font-weight: bold;
   margin-bottom: 3rem;
+  text-align: center;
 }
 
 .content {
   font-weight: normal;
   color: black;
   line-height: 2rem;
+  text-align: center;
 }

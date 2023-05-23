@@ -1,6 +1,17 @@
 import { useEffect, useState } from "react";
 import FoodItem from "./FoodItem/FoodItem";
 import classes from "./FoodList.module.css";
+import { motion } from "framer-motion";
+
+const variants = {
+  open: {
+    opacity:1,
+    transition: { staggerChildren: 1.07, delayChildren: 1.2 }
+  },
+  closed: {
+    opacity: 0
+  }
+};
 
 function FoodList(props) {
   const [itemToAdd, setItemToAdd] = useState({});
@@ -14,7 +25,7 @@ function FoodList(props) {
   };
 
   return (
-    <div className={classes["list-container"]}>
+    <motion.div variants={variants} initial='closed' animate='open' className={classes["list-container"]}>
       {props.foodItems.map((foodItem, i) => {
         return (
           <FoodItem
@@ -27,7 +38,7 @@ function FoodList(props) {
           ></FoodItem>
         );
       })}
-    </div>
+    </motion.div>
   );
 }
 

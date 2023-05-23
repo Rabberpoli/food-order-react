@@ -1,5 +1,18 @@
 import classes from "./FoodItem.module.css";
 import { useRef, useState } from "react";
+import { motion } from "framer-motion";
+
+const variants = {
+  open: {
+    y: 0,
+    transition: {
+      duration: 0.7
+    }
+  },
+  closed: {
+    y: 150,
+  }
+};
 
 function FoodItem(props) {
   const inputRef = useRef();
@@ -36,7 +49,7 @@ function FoodItem(props) {
   };
 
   return (
-    <div key={props.id} className={classes["item-container"]}>
+    <motion.div variants={variants} initial='closed' animate='open' key={props.id} className={classes["item-container"]}>
       <div>
         <p className="mb-05">{props.name}</p>
         <i className={`${classes.italic} mb-05`}>{props.description}</i>
@@ -66,7 +79,7 @@ function FoodItem(props) {
         </div>
       </div>
       <div className={`${classes["item-divider"]} mt-1 mb-1`}></div>
-    </div>
+    </motion.div>
   );
 }
 
