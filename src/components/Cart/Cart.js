@@ -103,8 +103,8 @@ function Cart(props) {
               </p>
             </div>
             <div className='display-flex justify-content-end mt-3'>
-              <button type='button' className={`${classes['cart-btn-close']} ml-3`} onClick={closeDialog}> Close </button>
-              <button className={`${classes['cart-btn-order']} ml-3`} onClick={order}> Order </button>
+              <motion.button whileHover={{scale: 1.2}} whileTap={{scale:0.8}} type='button' className={`${classes['cart-btn-close']} ml-3`} onClick={closeDialog}> Close </motion.button>
+              <motion.button whileHover={{scale: 1.2}} whileTap={{scale:0.8}} className={`${classes['cart-btn-order']} ml-3`} onClick={order}> Order </motion.button>
             </div>
           </motion.div>
         </motion.div>}

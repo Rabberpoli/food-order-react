@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import classes from './CartItem.module.css'
+import classes from './CartItem.module.css';
+import { motion } from "framer-motion";
 
 function CartItem(props) {
 
@@ -18,7 +19,9 @@ function CartItem(props) {
 
     }, [quantity])
 
-    const modifyOrder = (op) => {
+    const modifyOrder = (op, event) => {
+        event.stopPropagation();
+
         if (op==='add') {
             setQuantity((prevValue) => {
                 return prevValue + 1;
@@ -43,8 +46,8 @@ function CartItem(props) {
             </div>
             </div>
             <div className='display-flex justify-content-end'>
-            <div type='button' className={`${classes['add-remove-item-btn']} ml-3 align-self-center`} onClick={() => modifyOrder('sub')}> - </div>
-            <div type='button' className={`${classes['add-remove-item-btn']} ml-3 align-self-center`} onClick={() => modifyOrder('add')}> + </div>
+            <motion.button whileHover={{scale: 1.1}} whileTap={{scale: 0.7, transition: {type: 'spring'}}} type='button' className={`${classes['add-remove-item-btn']} ml-3 align-self-center`} onClick={(ev) => modifyOrder('sub', ev)}> - </motion.button>
+            <motion.button whileHover={{scale: 1.1}} whileTap={{scale: 0.7, transition: {type: 'spring'}}} type='button' className={`${classes['add-remove-item-btn']} ml-3 align-self-center`} onClick={(ev) => modifyOrder('add', ev)}> + </motion.button>
             </div>
         </div> : null
     )

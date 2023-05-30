@@ -31,6 +31,7 @@
     border: none;
     background-color: #e55c14;
     color: #f4e1ba;
+    cursor: pointer;
 }
 
 .cart-btn-close {
@@ -41,6 +42,7 @@
     background-color: #f4e1ba;
     color: #e55c14;
     border: solid 1px #e55c14;
+    cursor: pointer;
 }
 
 .total {

@@ -27,4 +27,17 @@ h2 {
     font-size: 2rem;
     font-weight: bolder;
     color: #e55c14;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.add-remove-item-btn:hover {
+    border-radius: 7px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bolder;
+    color: #f4e1ba;
+    cursor: pointer;
+    background-color: #e55c14;
 }
