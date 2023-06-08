@@ -26,7 +26,7 @@ function FoodList(props) {
 
   return (
     <motion.div variants={variants} initial='closed' animate='open' className={classes["list-container"]}>
-      {props.foodItems.map((foodItem, i) => {
+      { props.foodItems && props.foodItems.length > 0 && props.foodItems.map((foodItem, i) => {
         return (
           <FoodItem
             key={i}
@@ -38,6 +38,7 @@ function FoodList(props) {
           ></FoodItem>
         );
       })}
+      { !props || !props.foodItems || !props.foodItems.length && <p> No meals available. </p>}
     </motion.div>
   );
 }

@@ -14,6 +14,7 @@ body {
 
 .main-container {
   background-color: #212329;
+  min-height: 100vh;
 }
 
 .section-container {
