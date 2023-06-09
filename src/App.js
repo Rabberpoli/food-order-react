@@ -38,9 +38,11 @@ All our meals are cooked with high-quality ingredients, just-in-time and of cour
         </React.Fragment>
       }
       { !isLoading && isError && <p>Error retrieving meals</p> }
-      <div className="main-container display-flex justify-content-center flex-flow-cl">
-        <Logo></Logo>
-      </div>
+      {
+        isLoading && <div className="main-container display-flex justify-content-center flex-flow-cl">
+          <Logo></Logo>
+        </div>
+      }
     </div>
   );
 }

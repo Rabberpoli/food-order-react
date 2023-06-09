@@ -33,7 +33,6 @@ const characterAnimation = {
 
 function Logo() {
     const titleLogo = 'React Meals';
-
     return (
       <React.Fragment>
         <motion.svg className="align-self-center" width="40" height="38" viewBox="0 0 40 38" fill="none" xmlns="http://www.w3.org/2000/svg">

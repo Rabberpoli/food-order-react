@@ -41,6 +41,7 @@ function Cart(props) {
 
   const [showResult, setShowResult] = useState(true);
   const [foodItemsAdded, setFoodItemsAdded] = useState(props.foodItemsAdded);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(()=>{
     if(foodItemsAdded.length > 0) {
@@ -65,7 +66,7 @@ function Cart(props) {
   }
 
   const order = () => {
-    window.alert('Food ordered!')
+    setShowForm(true);
   }
 
   const onDeleteItem = (id) => {
@@ -83,32 +84,61 @@ function Cart(props) {
   }
 
   return (
-      <AnimatePresence onExitComplete={()=>null}>
-        {showResult && <motion.div variants={overlay} initial='closed' animate='open' exit='closed' id='modal' className={classes['cart-modal']}>
-          <motion.div variants={modal} initial='closed' animate='open' exit='closed' className={classes['cart-modal-content']}>
-            {
-              foodItemsAdded.map(item => {
-                return (
-                  <CartItem key={item.id} id={item.id} name={item.name} amount={item.amount} quantity={item.quantity} deleteItem={onDeleteItem} updateSummary={onUpdateSummary}></CartItem>
-                )
-              })
-            }
-            <div className={`${classes['item-divider']} mb-1 mt-1`}>
+        <React.Fragment>
+          {
+            showResult && 
+            <motion.div variants={overlay} initial='closed' animate='open' exit='closed' id='modal' className={classes['cart-modal']}>
+              <motion.div variants={modal} initial='closed' animate='open' exit='closed' className={classes['cart-modal-content']}>
+                {
+                  foodItemsAdded.map(item => {
+                    return (
+                      <CartItem key={item.id} id={item.id} name={item.name} amount={item.amount} quantity={item.quantity} deleteItem={onDeleteItem} updateSummary={onUpdateSummary}></CartItem>
+                    )
+                  })
+                }
+                <div className={`${classes['item-divider']} mb-1 mt-1`}>
 
-            </div>
-            <div className='display-flex justify-content-space-between'>
-              <p className={classes.total}>Total amount</p>
-              <p className={classes.total}>
-                {getTotalAmount()}
-              </p>
-            </div>
-            <div className='display-flex justify-content-end mt-3'>
-              <motion.button whileHover={{scale: 1.2}} whileTap={{scale:0.8}} type='button' className={`${classes['cart-btn-close']} ml-3`} onClick={closeDialog}> Close </motion.button>
-              <motion.button whileHover={{scale: 1.2}} whileTap={{scale:0.8}} className={`${classes['cart-btn-order']} ml-3`} onClick={order}> Order </motion.button>
-            </div>
-          </motion.div>
-        </motion.div>}
-      </AnimatePresence>
+                </div>
+                <div className='display-flex justify-content-space-between'>
+                  <p className={classes.total}>Total amount</p>
+                  <p className={classes.total}>
+                    {getTotalAmount()}
+                  </p>
+                </div>
+                <div className='display-flex justify-content-end mt-3'>
+                  <motion.button whileHover={{scale: 1.2}} whileTap={{scale:0.8}} type='button' className={`${classes['cart-btn-close']} ml-3`} onClick={closeDialog}> Close </motion.button>
+                  <motion.button whileHover={{scale: 1.2}} whileTap={{scale:0.8}} className={`${classes['cart-btn-order']} ml-3`} onClick={order}> Order </motion.button>
+                </div>
+              </motion.div>
+            </motion.div>
+          }
+          { showForm &&
+            <motion.div>
+              <form>
+                <div>
+                  <label></label>
+                  <input/>
+                </div>
+                <div>
+                  <label></label>
+                  <input/>
+                </div>
+                <div>
+                  <label></label>
+                  <input/>
+                </div>
+                <div>
+                  <label></label>
+                  <input/>
+                </div>
+                <div>
+                  <label></label>
+                  <input/>
+                </div>
+              </form>
+            </motion.div> 
+          }
+        </React.Fragment>
   );
 }
 
