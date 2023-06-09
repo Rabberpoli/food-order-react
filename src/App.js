@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import FoodList from "./components/FoodList/FoodList";
 import Header from "./components/Header/Header";
 import PresentationCard from "./components/UI/PresentationCard/PresentationCard";
@@ -6,6 +6,7 @@ import AuthContext from "./store/auth-context";
 import { motion } from "framer-motion";
 import useHttp from "./hooks/use-http";
 import React from 'react';
+import Logo from "./components/UI/Logo/Logo";
 
 function App() {
   const title = "Delicious Food, Delivered To You!";
@@ -37,6 +38,9 @@ All our meals are cooked with high-quality ingredients, just-in-time and of cour
         </React.Fragment>
       }
       { !isLoading && isError && <p>Error retrieving meals</p> }
+      <div className="main-container display-flex justify-content-center flex-flow-cl">
+        <Logo></Logo>
+      </div>
     </div>
   );
 }

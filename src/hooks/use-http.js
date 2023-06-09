@@ -27,10 +27,12 @@ function useHttp(url, method) {
                 }
                 const jsonBody = await response.json();
                 setData(jsonBody);
-                setIsLoading(false);
+                setTimeout(()=>{
+                    setIsLoading(false);
+                }, 2500)
             }
         )()
-    }, [url]);
+    }, [url, method]);
 
     return { isLoading, isError, data }
 }

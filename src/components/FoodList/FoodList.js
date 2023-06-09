@@ -38,7 +38,7 @@ function FoodList(props) {
           ></FoodItem>
         );
       })}
-      { !props || !props.foodItems || !props.foodItems.length && <p> No meals available. </p>}
+      { (!props || !props.foodItems || !props.foodItems.length) && <p> No meals available. </p>}
     </motion.div>
   );
 }
