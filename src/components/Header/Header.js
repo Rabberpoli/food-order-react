@@ -53,6 +53,15 @@ function Header(props) {
   }
 
   const onCartUpdated = (items) => {
+    if(items && items.length === 0) {
+      setFoodListCart([]);
+      setCountItems(0)
+
+      props.addCart(0);
+
+      return;
+    }
+
     props.addCart((foodListCart &&
       foodListCart.length > 0 &&
       foodListCart.reduce((a, b) => {

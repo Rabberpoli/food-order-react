@@ -145,6 +145,8 @@ function Cart(props) {
       return;
     }
 
+    setFoodItemsAdded([])
+
     // Call to http post
     setBodyForm({
       enteredShirtColor,
@@ -156,7 +158,10 @@ function Cart(props) {
     sendRequest(
       "https://food-order-react-a8a70-default-rtdb.europe-west1.firebasedatabase.app/user-form.json",
       "POST",
-      bodyForm,
+      {enteredShirtColor,
+        enteredDogName,
+        enteredHeight,
+        enteredFavoriteColor},
       applyData
     );
 
@@ -164,8 +169,8 @@ function Cart(props) {
     resetSurnameInput();
     resetAddressInput();
     resetMailInput();
-
-    closeDialog();
+    
+    // closeDialog();
   };
 
   const modalContent = () => {
