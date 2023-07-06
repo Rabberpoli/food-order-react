@@ -1,40 +1,38 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-function useHttp(url, method) {
-    const [isLoading, setIsLoading] = useState(true);
-    const [isError, setIsError] = useState(false);
-    const [data, setData] = useState(null);
+function useHttp() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
-    useEffect(() => {
-        (
-            async function(){
-                setIsLoading(true);
-                const response = await fetch(url,
-                    {
-                        method: method || 'GET',
-                        mode: 'cors',
-                        headers: {
-                        "Access-Control-Allow-Headers": "*",
-                        "Access-Control-Allow-Origin": "*",
-                        "Access-Control-Allow-Methods": "*"     
-                        }
-                    }
-                    ); 
+  const sendRequest = async (url, method, bodyForm, applyData) => {
+    setIsLoading(true);
+    setIsError(null);
 
-                    
-                if (!response.ok) {
-                    setIsError(true);
-                }
-                const jsonBody = await response.json();
-                setData(jsonBody);
-                setTimeout(()=>{
-                    setIsLoading(false);
-                }, 2500)
-            }
-        )()
-    }, [url, method]);
+    const response = await fetch(url, {
+      method: method || "GET",
+      body: bodyForm != null ? JSON.stringify(bodyForm) : null,
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
+        "Content-Type": "application/json",
+      },
+    });
 
-    return { isLoading, isError, data }
+    if (!response.ok) {
+      setIsError(true);
+      setIsLoading(false);
+    }
+
+    const jsonBody = await response.json();
+    applyData(jsonBody);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+  };
+
+  return { isLoading, isError, sendRequest };
 }
 
 export default useHttp;
