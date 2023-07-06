@@ -19,6 +19,7 @@ Simple static Web App that mocks "order food" logics. Made with React and Framer
 
 ![](./src/assets/screenshots/react-meals-cart.png)
 
+![](./src/assets/screenshots/react-meals-form.png)
 ### Links
 
 - Live Site URL: https://react-meals-phi.vercel.app/
