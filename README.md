@@ -7,6 +7,7 @@
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
+- [Notes](#notes)
 - [Author](#author)
 
 ## Overview
