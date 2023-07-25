@@ -27,10 +27,22 @@ User form is made by nonsense fields; I did it on purpose because I don't want t
 
 ### Built with
 
-- React (JS Library)
+- React (JS Library).
 - Framer motion (animation library)
 - CSS custom properties
 - Flexbox
+- Firebase (API for getting meals from DB and for posting form to DB)
+
+## Notes
+This simple web app was made with React. But when it was developed basic React features were implemented such as:
+- useState hooks
+- context API for managing global state
+- useEffect hooks
+- custom hooks (for HTTP and form requests)
+- Fragment
+- React Portal (creating the cart modal)
+
+Going further along the course I realized that somenthing could be done better... for example "context API" could be replaced by Redux and Redux toolkit, which allows me to manage global state using slices and reduce code overhead along components.
 
 ## Author
 
